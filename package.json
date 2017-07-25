@@ -1,0 +1,28 @@
+{
+  "name": "nepalagents",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+  "bcryptjs": "*",
+  "body-parser": "*",
+  "cors": "*",
+  "ejs": "*",
+  "express": "*",
+  "express-flash": "*",
+  "express-session":"*",
+  "express-ejs-layouts": "*",
+  "jsonwebtoken": "*",
+  "mongoose": "*",
+  "morgan": "*",
+  "multer": "*",
+  "nodemailer": "^3.1.4",
+  "passport": "*",
+  "nodemon":"*"
+ },
+  "author": "Binod Chaudhary",
+  "license": "ISC"
+}
