@@ -11,7 +11,7 @@ const flash = require('express-flash');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/nepalagents');
 
-//const product = require('./routes/product');
+const users = require('./routes/users');
 
 const app = express();
 
@@ -21,9 +21,9 @@ const port = 2000;
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// app.use(expressLayouts);
-// app.set('layout', 'layouts/default');
-// app.set('layout extractScripts', true);
+ app.use(expressLayouts);
+ app.set('layout', 'layouts/default');
+ app.set('layout extractScripts', true);
 
 
 app.use(session({secret: 'helloworld12345678', resave:false, saveUninitialized:false, cookie: { maxAge: 60000000 }}));
@@ -44,6 +44,7 @@ app.use(passport.session());
 
 // ROUTES FOR OUR API
 app.use('/', require('./routes'));
+app.use('/users',users);
 
 app.use(cors());
 app.use(express.static(path.join(__dirname,'public')));

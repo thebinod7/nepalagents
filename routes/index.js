@@ -2,7 +2,10 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/',function(req,res){
-  res.render('index');
+  const data = {
+    title : 'Nepal Agents'
+  }
+  res.render('index',data);
 });
 
 module.exports = router;
