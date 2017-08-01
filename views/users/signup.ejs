@@ -1,9 +1,9 @@
 <!-- Page Content -->
-<div id="page-content">
+<div id="page-content" class="content-space">
     <!-- Breadcrumb -->
     <div class="container">
         <ol class="breadcrumb">
-            <li><a href="#">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li class="active">Create an Account</li>
         </ol>
     </div>
@@ -11,55 +11,31 @@
 
     <div class="container">
         <header><h1>Create an Account</h1></header>
+          <% if(messages.error) { %>
+              <div class="alert alert-danger" style="<%= messages.error ? 'margin-top:20px;' : 'display: none' %>"><strong><%= messages.error ? messages.error[0] : '' %></strong></div>
+          <% } %>
+          <% if(messages.success) { %>
+                <div class="alert alert-success" style="<%= messages.success ? 'margin-top:20px;' : 'display: none' %>"><strong><%= messages.success ? messages.success[0] : '' %></strong></div>
+          <% } %>
         <div class="row">
             <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-                <h3>Account Type</h3>
-                <form role="form" id="form-create-account" method="post" >
-                    <div class="radio" id="create-account-user">
-                        <label>
-                            <input type="radio" id="account-type-user" name="account-type" required>Regular User
-                        </label>
-                    </div>
-                    <div class="radio" id="agent-switch" data-agent-state="">
-                        <label>
-                            <input type="radio" id="account-type-agent" name="account-type" required>Agent
-                        </label>
-                    </div>
-                    <div id="agency" class="disabled">
-                        <div class="form-group">
-                            <label for="account-agency">Select your agency:</label>
-                            <select name="account-agency" id="account-agency">
-                                <option value="">Agency</option>
-                                <option value="1">Estate+</option>
-                                <option value="2">Northfolk Eastate</option>
-                                <option value="3">Maximum Properties</option>
-                                <option value="4">Edd's Homes</option>
-                                <option value="5">Will & Scotch</option>
-                            </select>
-                        </div><!-- /.form-group -->
-                    </div>
-                    <hr>
+                <form role="form" id="form-create-account" method="post" action="/users/signup">
                     <div class="form-group">
-                        <label for="form-create-account-full-name">Full Name:</label>
-                        <input type="text" class="form-control" id="form-create-account-full-name" required>
+                        <label for="firstName">First Name:</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName" required>
                     </div><!-- /.form-group -->
                     <div class="form-group">
-                        <label for="form-create-account-email">Email:</label>
-                        <input type="email" class="form-control" id="form-create-account-email" required>
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" required>
                     </div><!-- /.form-group -->
                     <div class="form-group">
-                        <label for="form-create-account-password">Password:</label>
-                        <input type="password" class="form-control" id="form-create-account-password" required>
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
                     </div><!-- /.form-group -->
                     <div class="form-group">
-                        <label for="form-create-account-confirm-password">Confirm Password:</label>
-                        <input type="password" class="form-control" id="form-create-account-confirm-password" required>
+                        <label for="password">Password:</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
                     </div><!-- /.form-group -->
-                    <div class="checkbox pull-left">
-                        <!-- <label>
-                            <input type="checkbox" id="account-type-newsletter" name="account-newsletter">Receive Newsletter
-                        </label> -->
-                    </div>
                     <div class="form-group clearfix">
                         <button type="submit" class="btn pull-right btn-default" id="account-submit">Create an Account</button>
                     </div><!-- /.form-group -->
@@ -72,4 +48,3 @@
         </div><!-- /.row -->
     </div><!-- /.container -->
 </div>
-<!-- end Page Content -->

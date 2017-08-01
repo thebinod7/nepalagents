@@ -1,0 +1,41 @@
+<!-- Page Content -->
+  <div id="page-content" class="content-space">
+      <!-- Breadcrumb -->
+      <div class="container">
+          <ol class="breadcrumb">
+              <li><a href="/">Home</a></li>
+              <li class="active">Sign In</li>
+          </ol>
+      </div>
+      <!-- end Breadcrumb -->
+
+      <div class="container">
+          <header><h1>Sign In</h1></header>
+          <% if(messages.error) { %>
+              <div class="alert alert-danger" style="<%= messages.error ? 'margin-top:20px;' : 'display: none' %>"><strong><%= messages.error ? messages.error[0] : '' %></strong></div>
+          <% } %>
+          <% if(messages.success) { %>
+                <div class="alert alert-success" style="<%= messages.success ? 'margin-top:20px;' : 'display: none' %>"><strong><%= messages.success ? messages.success[0] : '' %></strong></div>
+          <% } %>
+          <div class="row">
+              <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
+                  <form role="form" id="form-create-account" method="post" action="/users/login" >
+                      <div class="form-group">
+                          <label for="email">Email:</label>
+                          <input type="email" class="form-control" id="email" name="email" required>
+                      </div><!-- /.form-group -->
+                      <div class="form-group">
+                          <label for="password">Password:</label>
+                          <input type="password" class="form-control" id="password" name="password" required>
+                      </div><!-- /.form-group -->
+                      <div class="form-group clearfix">
+                          <button type="submit" class="btn pull-right btn-default" id="account-submit">Sign to My Account</button>
+                      </div><!-- /.form-group -->
+                  </form>
+                  <hr>
+                  <div class="center"><a href="#">I don't remember my password</a></div>
+              </div>
+          </div><!-- /.row -->
+      </div><!-- /.container -->
+  </div>
+  <!-- end Page Content -->

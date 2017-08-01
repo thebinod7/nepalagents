@@ -1,0 +1,95 @@
+<section id="profile">
+    <header><h1>Profile</h1></header>
+    <div class="account-profile">
+        <div class="row">
+            <div class="col-md-3 col-sm-3">
+                <img alt="" class="image" src="/assets/img/agent-01.jpg">
+            </div>
+            <div class="col-md-9 col-sm-9">
+                <form role="form" id="form-account-profile" method="post" >
+                    <section id="contact">
+                        <!-- <h3>Profile Details</h3> -->
+                        <dl class="contact-fields">
+                            <dt><label for="firstName">First Name:</label></dt>
+                            <dd><div class="form-group">
+                                <input type="text" class="form-control" id="firstName" name="firstName" required value="">
+                            </div><!-- /.form-group --></dd>
+                            <dt><label for="lastName">Last Name:</label></dt>
+                            <dd><div class="form-group">
+                                <input type="text" class="form-control" id="lastName" name="lastName" required value="">
+                            </div><!-- /.form-group --></dd>
+                            <dt><label for="phone">Phone:</label></dt>
+                            <dd><div class="form-group">
+                                <input type="text" class="form-control" id="phone" name="phone" value="">
+                            </div><!-- /.form-group --></dd>
+                            <dt><label for="email">Email:</label></dt>
+                            <dd><div class="form-group">
+                                <input type="text" readonly="true" class="form-control" id="email" name="email" value="">
+                            </div><!-- /.form-group --></dd>
+                        </dl>
+                    </section>
+                    <section id="about-me">
+                        <h3>About Me</h3>
+                        <div class="form-group">
+                            <textarea class="form-control" id="bio" rows="5" name="bio">
+                            </textarea>
+                        </div><!-- /.form-group -->
+                    </section>
+                    <section id="social">
+                        <h3>My Social Network</h3>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-twitter"></i></span>
+                                <input type="text" class="form-control" id="account-social-twitter" name="account-social-twitter">
+                            </div>
+                        </div><!-- /.form-group -->
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-facebook"></i></span>
+                                <input type="text" class="form-control" id="account-social-facebook" name="account-social-facebook" >
+                            </div>
+                        </div><!-- /.form-group -->
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-pinterest"></i></span>
+                                <input type="text" class="form-control" id="account-social-pinterest" name="account-social-pinterest">
+                            </div>
+                        </div><!-- /.form-group -->
+                        <div class="form-group clearfix">
+                            <button type="submit" class="btn pull-right btn-default" id="account-submit">Save Changes</button>
+                        </div><!-- /.form-group -->
+                    </section>
+                </form><!-- /#form-contact -->
+                <section id="change-password">
+                    <header><h2>Change Your Password</h2></header>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <form role="form" id="form-account-password" method="post" >
+                                <div class="form-group">
+                                    <label for="form-account-password-current">Current Password</label>
+                                    <input type="password" class="form-control" id="form-account-password-current" name="form-account-password-current">
+                                </div><!-- /.form-group -->
+                                <div class="form-group">
+                                    <label for="form-account-password-new">New Password</label>
+                                    <input type="password" class="form-control" id="form-account-password-new" name="form-account-password-new">
+                                </div><!-- /.form-group -->
+                                <div class="form-group">
+                                    <label for="form-account-password-confirm-new">Confirm New Password</label>
+                                    <input type="password" class="form-control" id="form-account-password-confirm-new" name="form-account-password-confirm-new">
+                                </div><!-- /.form-group -->
+                                <div class="form-group clearfix">
+                                    <button type="submit" class="btn btn-default" id="form-account-password-submit">Change Password</button>
+                                </div><!-- /.form-group -->
+                            </form><!-- /#form-account-password -->
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <strong>Hint:</strong>
+                            <p>Choose strong and unique password having at leaset one digit, capital letter and special character.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </div><!-- /.col-md-9 -->
+        </div><!-- /.row -->
+    </div><!-- /.account-profile -->
+</section><!-- /#profile -->

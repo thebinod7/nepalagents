@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <% include ../partials/head %>
+
+  <body class="page-sub-page page-profile page-account">
+  <div class="wrapper">
+    <% include ../partials/header %>
+    <div id="page-content">
+      <!-- Breadcrumb -->
+      <div class="container">
+          <ol class="breadcrumb">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Account</a></li>
+              <li class="active">Profile</li>
+          </ol>
+      </div>
+      <!-- end Breadcrumb -->
+
+      <div class="container">
+          <div class="row">
+          <!-- sidebar -->
+          <div class="col-md-3 col-sm-2">
+              <section id="sidebar">
+                  <header><h3>Account</h3></header>
+                  <aside>
+                      <ul class="sidebar-navigation">
+                          <li class="active"><a href="#"><i class="fa fa-user"></i><span>Profile</span></a></li>
+                          <li><a href="#"><i class="fa fa-plus"></i><span>Add Property</span></a></li>
+                          <li><a href="#"><i class="fa fa-home"></i><span>My Properties</span></a></li>
+                          <li><a href="#"><i class="fa fa-heart"></i><span>Favorite Properties</span></a></li>
+                          <li><a href="#"><i class="fa fa-sign-out"></i><span>Sign Out</span></a></li>
+                      </ul>
+                  </aside>
+              </section><!-- /#sidebar -->
+          </div><!-- /.col-md-3 -->
+          <!-- end Sidebar -->
+              <!-- My Properties -->
+              <div class="col-md-9 col-sm-10">
+                    <%- body %>
+              </div><!-- /.col-md-9 -->
+              <!-- end My Properties -->
+          </div><!-- /.row -->
+      </div><!-- /.container -->
+    </div>
+
+    <% include ../partials/footer %>
+    <%- script %>
+  </div>
+  </body>
+</html>

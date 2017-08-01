@@ -6,10 +6,16 @@
                 <figure><strong>Email:</strong>info@nepalagents.com</figure>
             </div>
             <div class="user-area">
+                <% if (!locals.user) { %>
                 <div class="actions">
                     <a href="/users/signup" class="promoted"><strong>Register</strong></a>
                     <a href="/users/login">Sign In</a>
                 </div>
+                <% } else { %>
+                  <div class="actions">
+                      <a href="/users/profile" class="promoted"><strong><span>Welcome</span>,<%= locals.user.firstName %> <%= locals.user.lastName %></strong></a>
+                  </div>
+                <% } %>
             </div>
         </div>
     </div>
