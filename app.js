@@ -12,6 +12,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/nepalagents');
 
 const users = require('./routes/users');
+const property = require('./routes/property');
 
 const app = express();
 
@@ -45,6 +46,7 @@ app.use(passport.session());
 // ROUTES FOR OUR API
 app.use('/', require('./routes'));
 app.use('/users',users);
+app.use('/property',property);
 
 app.use(cors());
 app.use(express.static(path.join(__dirname,'public')));
