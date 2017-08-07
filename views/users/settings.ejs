@@ -1,0 +1,39 @@
+<section id="changePassword">
+    <header><h1>Change Password</h1></header>
+    <% if(messages.error) { %>
+        <div class="alert alert-danger" style="<%= messages.error ? 'margin-top:20px;' : 'display: none' %>"><strong><%= messages.error ? messages.error[0] : '' %></strong></div>
+    <% } %>
+    <% if(messages.success) { %>
+          <div class="alert alert-success" style="<%= messages.success ? 'margin-top:20px;' : 'display: none' %>"><strong><%= messages.success ? messages.success[0] : '' %></strong></div>
+    <% } %>
+    <div class="account-profile">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+            <form role="form" id="form-change-password" method="post" action="/users/change/password">
+                    <section id="contact">
+                        <!-- <h3>Profile Details</h3> -->
+                        <dl class="contact-fields">
+                            <dt><label for="password">Old Password:</label></dt>
+                            <dd><div class="form-group">
+                                <input type="password" class="form-control" required name="password">
+                            </div><!-- /.form-group --></dd>
+                            <dt><label for="newPassword">New Password:</label></dt>
+                            <dd><div class="form-group">
+                                <input type="password" class="form-control" required name="newPassword">
+                            </div><!-- /.form-group --></dd>
+                            <dt><label for="confirmPassword">Confirm Password:</label></dt>
+                            <dd><div class="form-group">
+                                <input type="password" class="form-control" required name="confirmPassword">
+                            </div><!-- /.form-group --></dd>
+                        </dl>
+                    </section>
+                    <section id="social">
+                        <div class="form-group clearfix">
+                            <button type="submit" class="btn-submit btn pull-right btn-default" id="account-submit">Save Changes</button>
+                        </div><!-- /.form-group -->
+                    </section>
+            </form><!-- /#form -->
+          </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.account-profile -->
+</section><!-- /#profile -->

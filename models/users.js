@@ -23,7 +23,7 @@ const userSchema = mongoose.Schema({
     password : {
         type : String
     },
-    Address : {
+    address : {
         type : String
     },
     bio : {
