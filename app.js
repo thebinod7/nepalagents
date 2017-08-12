@@ -7,6 +7,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const flash = require('express-flash');
+var RedisStore = require('connect-redis')(session);
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/nepalagents');
@@ -26,8 +27,12 @@ app.set('view engine', 'ejs');
  app.set('layout', 'layouts/default');
  app.set('layout extractScripts', true);
 
-
-app.use(session({secret: 'helloworld12345678', resave:false, saveUninitialized:false, cookie: { maxAge: 60000000 }}));
+ app.use(session({
+   secret: 'T$mp12345678',
+   resave: false,
+   saveUninitialized: true,
+   store: new RedisStore
+ }));
 app.use(flash());
 
 app.use(function(req, res, next){

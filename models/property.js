@@ -9,24 +9,21 @@ const propertySchema = mongoose.Schema({
     title : {
         type: String
     },
-    listingPurpose : { type : String }, //Sale,Rent
+    status : { type : String }, //Sale,Rent
     landSize : { type : String },
     builtArea : { type : String },
     price : { type : Number },
     availability : { type : String }, //3months,6months,9months
     condition : {type: String }, //Excellent,good,fair
-    propertyType : { type: String }, //Land,House
+    type : { type: String }, //Land,House
     mainRoadDistance : { type: String },
-    noOfRooms: {type: Number },
-    bedroomType: {type: String },
-    bedroomNo: {type: Number },
-    bathroomNo: {type: Number },
+    beds: {type: String },
+    baths: {type: Number },
     description: {type: String },
     location : { type : String },
     googleLat : { type : String },
     googleLong : { type String },
-    address : { type String },
-    parking : { type String },
+    zone : { type String },
     garage : { type String },
     amenities: [{type: String}],
     userId: {type: ObjectId, ref: 'Users'},

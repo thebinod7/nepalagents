@@ -9,6 +9,7 @@
   "dependencies": {
   "bcryptjs": "*",
   "body-parser": "*",
+  "connect-redis": "^3.3.0",
   "cors": "*",
   "ejs": "*",
   "express": "*",
