@@ -1,6 +1,12 @@
 <div class="row">
     <header><h1>Add Your Property</h1></header>
-    <form role="form" id="form-submit" class="form-submit" action="thank-you.html">
+    <% if(messages.error) { %>
+        <div class="alert alert-danger" style="<%= messages.error ? 'margin-top:20px;' : 'display: none' %>"><strong><%= messages.error ? messages.error[0] : '' %></strong></div>
+    <% } %>
+    <% if(messages.success) { %>
+          <div class="alert alert-success" style="<%= messages.success ? 'margin-top:20px;' : 'display: none' %>"><strong><%= messages.success ? messages.success[0] : '' %></strong></div>
+    <% } %>
+    <form role="form" id="addPropertyForm" method="post" class="form-submit" action="/property/save">
         <div class="row">
             <div class="block">
                 <div class="col-md-12 col-sm-12">
@@ -10,23 +16,23 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="form-group">
-                                        <label for="submit-title">Title</label>
-                                        <input type="text" class="form-control" id="submit-title" name="title" required>
+                                        <label for="title">Title</label>
+                                        <input type="text" class="form-control" id="title" name="title" required>
                                     </div><!-- /.form-group -->
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="submit-price">Price</label>
+                                        <label for="price">Price</label>
                                         <div class="input-group">
                                             <span class="input-group-addon">$</span>
-                                            <input type="text" class="form-control" id="submit-price" name="price" pattern="\d*" required>
+                                            <input type="text" class="form-control" id="price" name="price" pattern="\d*" required>
                                         </div>
                                     </div><!-- /.form-group -->
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="submit-description">Description</label>
-                                <textarea class="form-control" id="submit-description" rows="8" name="submit-description" required></textarea>
+                                <label for="description">Description</label>
+                                <textarea class="form-control" id="description" rows="8" name="description" required></textarea>
                             </div><!-- /.form-group -->
                         </section><!-- /#basic-information -->
 
@@ -191,7 +197,7 @@
                             <header><h2>Gallery</h2></header>
                             <div class="center">
                                 <div class="form-group">
-                                  <div id="photos-uploader" action="/upload" class="dropzone"></div>
+                                  <div id="photos-uploader" action="/property/uploadImages" class="dropzone"></div>
                                   <input type="hidden" class="images-input" name="images" value="" />
                                 </div>
                             </div>
@@ -200,24 +206,25 @@
                         <section id="property-features" class="block">
                             <section>
                                 <header><h2>Property Features</h2></header>
+                                <input type="hidden" id="amenities" name="amenities" />
                                 <ul class="submit-features">
-                                    <li><div class="checkbox"><label><input type="checkbox">Air conditioning</label></div></li>
-                                    <li><div class="checkbox"><label><input type="checkbox">Water Supply</label></div></li>
-                                    <li><div class="checkbox"><label><input type="checkbox">Heating</label></div></li>
-                                    <li><div class="checkbox"><label><input type="checkbox">Internet</label></div></li>
-                                    <li><div class="checkbox"><label><input type="checkbox">Electricity</label></div></li>
-                                    <li><div class="checkbox"><label><input type="checkbox">Gym</label></div></li>
-                                    <li><div class="checkbox"><label><input type="checkbox">Swimming Pool</label></div></li>
-                                    <li><div class="checkbox"><label><input type="checkbox">Garbage Disposal</label></div></li>
-                                    <li><div class="checkbox"><label><input type="checkbox">Telephone Line</label></div></li>
-                                    <li><div class="checkbox"><label><input type="checkbox">Cable TV</label></div></li>
-                                    <li><div class="checkbox"><label><input type="checkbox">Pets Room</label></div></li>
-                                    <li><div class="checkbox"><label><input type="checkbox">Security</label></div></li>
-                                    <li><div class="checkbox"><label><input type="checkbox">Terrace</label></div></li>
-                                    <li><div class="checkbox"><label><input type="checkbox">Parking</label></div></li>
-                                    <li><div class="checkbox"><label><input type="checkbox">Playground</label></div></li>
-                                    <li><div class="checkbox"><label><input type="checkbox">Garden</label></div></li>
-                                    <li><div class="checkbox"><label><input type="checkbox">Garage</label></div></li>
+                                    <li><div class="checkbox"><label><input class="amenity-check" value="air_conditioning" type="checkbox">Air conditioning</label></div></li>
+                                    <li><div class="checkbox"><label><input class="amenity-check" value="water_supply" type="checkbox">Water Supply</label></div></li>
+                                    <li><div class="checkbox"><label><input class="amenity-check" value="heating" type="checkbox">Heating</label></div></li>
+                                    <li><div class="checkbox"><label><input class="amenity-check" value="internet" type="checkbox">Internet</label></div></li>
+                                    <li><div class="checkbox"><label><input class="amenity-check" value="electricity" type="checkbox">Electricity</label></div></li>
+                                    <li><div class="checkbox"><label><input class="amenity-check" value="gym" type="checkbox">Gym</label></div></li>
+                                    <li><div class="checkbox"><label><input class="amenity-check" value="swimming_pool" type="checkbox">Swimming Pool</label></div></li>
+                                    <li><div class="checkbox"><label><input class="amenity-check" value="garbage_disposal" type="checkbox">Garbage Disposal</label></div></li>
+                                    <li><div class="checkbox"><label><input class="amenity-check" value="telephone_line" type="checkbox">Telephone Line</label></div></li>
+                                    <li><div class="checkbox"><label><input class="amenity-check" value="cable_tv" type="checkbox">Cable TV</label></div></li>
+                                    <li><div class="checkbox"><label><input class="amenity-check" value="pets_room" type="checkbox">Pets Room</label></div></li>
+                                    <li><div class="checkbox"><label><input class="amenity-check" value="security" type="checkbox">Security</label></div></li>
+                                    <li><div class="checkbox"><label><input class="amenity-check" value="terrace" type="checkbox">Terrace</label></div></li>
+                                    <li><div class="checkbox"><label><input class="amenity-check" value="parking" type="checkbox">Parking</label></div></li>
+                                    <li><div class="checkbox"><label><input class="amenity-check" value="playground" type="checkbox">Playground</label></div></li>
+                                    <li><div class="checkbox"><label><input class="amenity-check" value="garden" type="checkbox">Garden</label></div></li>
+                                    <li><div class="checkbox"><label><input class="amenity-check" value="garage" type="checkbox">Garage</label></div></li>
                                 </ul>
                             </section>
                         </section>
@@ -231,7 +238,7 @@
                 <div class="col-md-12 col-sm-12">
                     <div class="center">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-default large">Submit Property</button>
+                            <button type="button" class="btn btn-default large submit-btn">Submit Property</button>
                         </div><!-- /.form-group -->
                     </div>
                 </div>
@@ -239,3 +246,52 @@
         </div>
     </form><!-- /#form-submit -->
 </div><!-- /.container -->
+
+<script>
+$(document).ready(function () {
+  var a = '1';
+  const images = [];
+  let allowURLChange = false;
+
+  Dropzone.options.photosUploader = {
+    addRemoveLinks: true,
+    init: function () {
+
+      this.on("success", function (file, response) {
+        $('.dz-preview').each(function() {
+          if($(this).data('file').name === file.name) {
+            const newFile = Object.assign({}, file, { name: response.result })
+            $(this).data('file', newFile)
+          }
+        });
+      });
+
+      this.on("addedfile", function (file) {
+        $('.dz-preview:last-of-type').data('file', file);
+      });
+    }
+  }
+
+  $('.submit-btn').on('click', function(e) {
+    const amenities = [];
+    const currentQueue = [];
+
+    $.each($("input.amenity-check:checked"), function() {
+      amenities.push($(this).val());
+    });
+
+    $('input[name=amenities]').val(amenities.join(','));
+
+    $('.dz-preview').each( function(){
+      currentQueue.push($(this).data('file').name);
+    });
+
+    $('.images-input').val(currentQueue.join(','));
+
+    allowURLChange = true;
+
+    $('#addPropertyForm').submit();
+  });
+
+});
+</script>
