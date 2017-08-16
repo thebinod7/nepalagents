@@ -1,3 +1,8 @@
 .content-space {
   margin-top : 120px;
 }
+
+.op-img {
+    opacity: 0.7;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+}

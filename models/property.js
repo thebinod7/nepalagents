@@ -9,6 +9,7 @@ const propertySchema = mongoose.Schema({
     title : {
         type: String
     },
+    images : { type : Array },
     status : { type : String }, //Sale,Rent
     landSize : { type : String },
     builtArea : { type : String },

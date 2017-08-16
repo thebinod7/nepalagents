@@ -4,7 +4,7 @@
         <aside id="footer-main">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3 col-sm-3">
+                    <div class="col-md-4 col-sm-4">
                         <article>
                             <h3>About Us</h3>
                             <p>Vel fermentum ipsum. Suspendisse quis molestie odio. Interdum et malesuada fames ac ante ipsum
@@ -15,36 +15,7 @@
                             <a href="#" class="link-arrow">Read More</a>
                         </article>
                     </div><!-- /.col-sm-3 -->
-                    <div class="col-md-3 col-sm-3">
-                        <article>
-                            <h3>Recent Properties</h3>
-                            <div class="property small">
-                                <a href="property-detail.html">
-                                    <div class="property-image">
-                                        <img alt="" src="/assets/img/properties/property-06.jpg">
-                                    </div>
-                                </a>
-                                <div class="info">
-                                    <a href="property-detail.html"><h4>2186 Rinehart Road</h4></a>
-                                    <figure>Doral, FL 33178 </figure>
-                                    <div class="tag price">$ 72,000</div>
-                                </div>
-                            </div><!-- /.property -->
-                            <div class="property small">
-                                <a href="property-detail.html">
-                                    <div class="property-image">
-                                        <img alt="" src="/assets/img/properties/property-09.jpg">
-                                    </div>
-                                </a>
-                                <div class="info">
-                                    <a href="property-detail.html"><h4>2479 Murphy Court</h4></a>
-                                    <figure>Minneapolis, MN 55402</figure>
-                                    <div class="tag price">$ 36,000</div>
-                                </div>
-                            </div><!-- /.property -->
-                        </article>
-                    </div><!-- /.col-sm-3 -->
-                    <div class="col-md-3 col-sm-3">
+                    <div class="col-md-4 col-sm-4">
                         <article>
                             <h3>Contact</h3>
                             <address>
@@ -56,7 +27,7 @@
                             <a href="#">hello@example.com</a>
                         </article>
                     </div><!-- /.col-sm-3 -->
-                    <div class="col-md-3 col-sm-3">
+                    <div class="col-md-4 col-sm-4">
                         <article>
                             <h3>Useful Links</h3>
                             <ul class="list-unstyled list-links">
@@ -74,8 +45,8 @@
         <aside id="footer-thumbnails" class="footer-thumbnails"></aside><!-- /#footer-thumbnails -->
         <aside id="footer-copyright">
             <div class="container">
-                <span>Copyright © 2013. All Rights Reserved.</span>
-                <span class="pull-right"><a href="#page-top" class="roll">Go to top</a></span>
+                <span>Copyright © 2017. All Rights Reserved.</span>
+                <span class="pull-right"><a href="#top" class="roll">Go to top</a></span>
             </div>
         </aside>
     </div><!-- /.inner -->
@@ -113,4 +84,8 @@
     $(window).load(function(){
         initializeOwl(false);
     });
+    $("a[href='#top']").click(function() {
+        $("html, body").animate({ scrollTop: 0 }, 100);
+        return false;
+      });
 </script>

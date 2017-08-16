@@ -13,6 +13,12 @@ const dashboardLayoutData = {
   layout: 'layouts/dashboard'
 };
 
+const relatedListings = function(status) {
+  return Property.find({
+    status
+  });
+};
+
 var storage = multer.diskStorage({
   destination: './public/assets/img/uploads/',
   filename (req, file, cb) {
@@ -37,6 +43,30 @@ router.get('/add', auth, function(req,res){
         title:  'Property - Add'
       });
     res.render('property/add', data);
+});
+
+router.get('/view/:id', (req, res) => {
+  Property.findById(req.params.id)
+  .populate('userId')
+  .exec((err, doc) => {
+    if(err) throw err;
+    relatedListings(doc.status)
+    .limit(4)
+    .exec(function(err, related) {
+      console.log(doc.userId);
+      Users.findOne({ userId: doc.userId._id }).exec((err, agent) => {
+        console.log(agent);
+        const images = [doc.featuredImgUrl].concat(doc.images.filter(i => i.length));
+        res.render('property/details', {
+          data: doc,
+          title: 'Property Details',
+          list:related,
+          images,
+          agent
+        });
+      });
+    });
+  });
 });
 
 router.post('/save', (req, res) => {

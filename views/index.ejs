@@ -12,10 +12,10 @@
                         <figure><%= d.zone %></figure>
                     </div>
                     <hr>
-                    <a href="/property/view" class="link-arrow">Read More</a>
+                    <a href="/property/view/<%= d._id %>" class="link-arrow">Read More</a>
                 </div>
             </div>
-            <img style="width:100%;" src="/assets/img/cover1.jpeg">
+            <img class="op-img" style="width:100%;" src="/assets/img/cover1.jpeg">
         </div>
         <% }); %>
     </div>
@@ -167,7 +167,7 @@
                 %>
                 <div class="col-md-3 col-sm-6">
                     <div class="property">
-                        <a href="/property/view">
+                        <a href="/property/view/<%= d._id %>">
                             <div class="property-image">
                                 <img height="250" src="assets/img/uploads/<%= d.featuredImgUrl %>">
                             </div>
