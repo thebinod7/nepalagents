@@ -10,7 +10,9 @@ const flash = require('express-flash');
 var RedisStore = require('connect-redis')(session);
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/nepalagents');
+//mongoose.connect('mongodb://localhost/nepalagents');
+mongoose.connect('mongodb://develop:T$mp98437@ds151153.mlab.com:51153/db_agents');
+
 
 const users = require('./routes/users');
 const property = require('./routes/property');
