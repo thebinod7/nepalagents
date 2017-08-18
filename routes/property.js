@@ -45,6 +45,29 @@ router.get('/add', auth, function(req,res){
     res.render('property/add', data);
 });
 
+router.get('/listings', auth, function(req,res){
+  Property
+    .find({
+      $and : [
+        { currentStatus : 'publish' },
+        { isActive : true }
+      ]
+    })
+    .sort('-dateAdded')
+    .exec(function (err, docs) {
+      if(err){
+        res.json({success : false, msg : 'Failed to list!'});
+      } else {
+        var data = {
+          property: docs,
+          count : docs.length,
+          title : 'Property - listings'
+        };
+        res.render('property/listings',data);
+      }
+    });
+});
+
 router.get('/view/:id', (req, res) => {
   Property.findById(req.params.id)
   .populate('userId')

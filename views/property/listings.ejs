@@ -1,0 +1,173 @@
+<!-- Page Content -->
+<div id="page-content" class="content-space">
+    <!-- Breadcrumb -->
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li class="active">Property Listing</li>
+        </ol>
+    </div>
+    <!-- end Breadcrumb -->
+
+    <div class="container">
+        <div class="row">
+            <!-- Results -->
+            <div class="col-md-9 col-sm-9">
+                <section id="results">
+                    <header><h1>Properties Listing</h1></header>
+                    <section id="search-filter">
+                        <figure><h3><i class="fa fa-search"></i>Propertyies Found:</h3>
+                            <span class="search-count"><%= count %></span>
+                            <div class="sorting">
+                                <div class="form-group">
+                                    <select name="sorting">
+                                        <option value="">Sort By</option>
+                                        <option value="1">Lowest price first</option>
+                                        <option value="2">Highest price first</option>
+                                        <option value="3">Recently added</option>
+                                        <option value="4">Lately added</option>
+                                    </select>
+                                </div><!-- /.form-group -->
+                            </div>
+                        </figure>
+                    </section>
+                    <section id="properties">
+                    <div class="row">
+                      <% property.forEach(function(d,a){ %>
+                        <div class="col-md-4 col-sm-4">
+                            <div class="property equal-height">
+                                <figure class="tag status">For Sale</figure>
+                                <a href="/property/view/<%=d._id%>">
+                                    <div class="property-image">
+                                        <img alt="" src="/assets/img/uploads/<%= d.featuredImgUrl %>">
+                                    </div>
+                                    <div class="overlay">
+                                        <div class="info">
+                                            <div class="tag price">$<%= d.price %></div>
+                                            <h3><%= d.title %></h3>
+                                            <figure><%= d.zone %>, <%= d.location? d.location : 'N/A'%></figure>
+                                        </div>
+                                        <ul class="additional-info">
+                                            <li>
+                                                <header>Area:</header>
+                                                <figure><%= d.builtArea? d.builtArea : d.landSize %>m<sup>2</sup></figure>
+                                            </li>
+                                            <li>
+                                                <header>Beds:</header>
+                                                <figure><%= d.beds? d.beds : 'N/A' %></figure>
+                                            </li>
+                                            <li>
+                                                <header>Baths:</header>
+                                                <figure><%= d.baths? d.baths : 'N/A' %></figure>
+                                            </li>
+                                            <li>
+                                                <header>Garage:</header>
+                                                <figure><%= d.garage %></figure>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </a>
+                            </div><!-- /.property -->
+                        </div><!-- /.col-md-3 -->
+                      <% }); %>
+                    </div><!-- /.row-->
+
+                    <!-- Pagination -->
+                    <div class="center">
+                        <ul class="pagination">
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                        </ul><!-- /.pagination-->
+                    </div><!-- /.center-->
+
+                    </section><!-- /#properties-->
+                </section><!-- /#results -->
+            </div><!-- /.col-md-9 -->
+            <!-- end Results -->
+
+            <!-- sidebar -->
+            <div class="col-md-3 col-sm-3">
+                <section id="sidebar">
+                    <aside id="edit-search">
+                        <header><h3>Search Properties</h3></header>
+                        <form role="form" id="form-sidebar" class="form-search" action="properties-listing.html">
+                            <div class="form-group">
+                                <select name="type">
+                                    <option value="">Status</option>
+                                    <option value="1">Rent</option>
+                                    <option value="2">Sale</option>
+                                </select>
+                            </div><!-- /.form-group -->
+                            <div class="form-group">
+                                <select name="country">
+                                    <option value="">Country</option>
+                                    <option value="1">France</option>
+                                    <option value="2">Great Britain</option>
+                                    <option value="3">Spain</option>
+                                    <option value="4">Russia</option>
+                                    <option value="5">United States</option>
+                                </select>
+                            </div><!-- /.form-group -->
+                            <div class="form-group">
+                                <select name="city">
+                                    <option value="">City</option>
+                                    <option value="1">New York</option>
+                                    <option value="2">Los Angeles</option>
+                                    <option value="3">Chicago</option>
+                                    <option value="4">Houston</option>
+                                    <option value="5">Philadelphia</option>
+                                </select>
+                            </div><!-- /.form-group -->
+                            <div class="form-group">
+                                <select name="district">
+                                    <option value="">District</option>
+                                    <option value="1">Manhattan</option>
+                                    <option value="2">The Bronx</option>
+                                    <option value="3">Brooklyn</option>
+                                    <option value="4">Queens</option>
+                                    <option value="5">Staten Island</option>
+                                </select>
+                            </div><!-- /.form-group -->
+                            <div class="form-group">
+                                <select name="property-type">
+                                    <option value="">Property Type</option>
+                                    <option value="1">Apartment</option>
+                                    <option value="2">Condominium</option>
+                                    <option value="3">Cottage</option>
+                                    <option value="4">Flat</option>
+                                    <option value="5">House</option>
+                                </select>
+                            </div><!-- /.form-group -->
+                            <div class="form-group">
+                                <div class="price-range">
+                                    <input id="price-input" type="text" name="price" value="1000;299000">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default">Search Now</button>
+                            </div><!-- /.form-group -->
+                        </form><!-- /#form-map -->
+                    </aside><!-- /#edit-search -->
+                    <aside id="our-guides">
+                        <header><h3>Our Guides</h3></header>
+                        <a href="#" class="universal-button">
+                            <figure class="fa fa-home"></figure>
+                            <span>Buying Guide</span>
+                            <span class="arrow fa fa-angle-right"></span>
+                        </a><!-- /.universal-button -->
+                        <a href="#" class="universal-button">
+                            <figure class="fa fa-umbrella"></figure>
+                            <span>Right Insurance for You</span>
+                            <span class="arrow fa fa-angle-right"></span>
+                        </a><!-- /.universal-button -->
+                    </aside><!-- /#our-guide -->
+                </section><!-- /#sidebar -->
+            </div><!-- /.col-md-3 -->
+            <!-- end Sidebar -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div>
+<!-- end Page Content -->

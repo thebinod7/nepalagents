@@ -98,7 +98,7 @@
                                                     </p>
                                                     <dl>
                                                         <dt>Phone:</dt>
-                                                        <dd><%= data.userId.phone %></dd>
+                                                        <dd><a href="tel:<%=data.userId.phone%>"><%= data.userId.phone?data.userId.phone : 'N/A' %></dd>
                                                         <dt>Email:</dt>
                                                         <dd><a href="mailto:<%= data.userId.email %>"><%= data.userId.email %></a></dd>
                                                     </dl>
