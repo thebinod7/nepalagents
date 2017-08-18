@@ -20,7 +20,6 @@ router.get('/', (req, res) => {
           property: docs,
           title : 'Home - Nepal Agents'
         };
-        console.log(data);
         res.render('index',data);
       }
     });

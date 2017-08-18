@@ -1,0 +1,297 @@
+<div class="row">
+    <header><h1>Update Your Property</h1></header>
+    <% if(messages.error) { %>
+        <div class="alert alert-danger" style="<%= messages.error ? 'margin-top:20px;' : 'display: none' %>"><strong><%= messages.error ? messages.error[0] : '' %></strong></div>
+    <% } %>
+    <% if(messages.success) { %>
+          <div class="alert alert-success" style="<%= messages.success ? 'margin-top:20px;' : 'display: none' %>"><strong><%= messages.success ? messages.success[0] : '' %></strong></div>
+    <% } %>
+    <form role="form" id="updatePropertyForm" method="post" class="form-submit" action="/property/update">
+        <div class="row">
+            <div class="block">
+                <div class="col-md-12 col-sm-12">
+                    <section id="submit-form">
+                        <section id="basic-information">
+                            <header><h2>Basic Information</h2></header>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label for="title">Title</label>
+                                        <input type="text" class="form-control" value="<%= data.title %>" id="title" name="title" required>
+                                    </div><!-- /.form-group -->
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="price">Price</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">$</span>
+                                            <input type="text" class="form-control" value="<%= data.price %>" id="price" name="price" pattern="\d*" required>
+                                        </div>
+                                    </div><!-- /.form-group -->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea class="form-control" id="description" rows="8" name="description" required><%= data.description %></textarea>
+                            </div><!-- /.form-group -->
+                        </section><!-- /#basic-information -->
+
+                        <section>
+                            <div class="row">
+                                <div class="block clearfix">
+                                    <div class="col-md-6 col-sm-6">
+                                        <section id="summary">
+                                            <header><h2>Summary</h2></header>
+                                            <div class="form-group">
+                                                <label for="zone">Zone</label>
+                                                <select name="zone" id="zone">
+                                                    <option <%= data.zone === 'bagmati'? 'selected' : ''%> value="bagmati">Bagmati</option>
+                                                    <option <%= data.zone === 'bheri'? 'selected' : ''%> value="bheri">Bheri</option>
+                                                    <option <%= data.zone === 'dhawalagiri'? 'selected' : ''%> value="dhawalagiri">Dhawalagiri</option>
+                                                    <option <%= data.zone === 'gandaki'? 'selected' : ''%> value="gandaki">Gandaki</option>
+                                                    <option <%= data.zone === 'janakpur'? 'selected' : ''%> value="janakpur">Janakpur</option>
+                                                    <option <%= data.zone === 'karnali'? 'selected' : ''%> value="karnali">Karnali</option>
+                                                    <option <%= data.zone === 'koshi'? 'selected' : ''%> value="koshi">Koshi</option>
+                                                    <option <%= data.zone === 'lumbini'? 'selected' : ''%> value="lumbini">Lumbini</option>
+                                                    <option <%= data.zone === 'mahakali'? 'selected' : ''%> value="mahakali">Mahakali</option>
+                                                    <option <%= data.zone === 'mechi'? 'selected' : ''%> value="mechi">Mechi</option>
+                                                    <option <%= data.zone === 'narayani'? 'selected' : ''%> value="narayani">Narayani</option>
+                                                    <option <%= data.zone === 'rapti'? 'selected' : ''%> value="rapti">Rapti</option>
+                                                    <option <%= data.zone === 'sagarmatha'? 'selected' : ''%> value="sagarmatha">Sagarmatha</option>
+                                                    <option <%= data.zone === 'seti'? 'selected' : ''%> value="seti">Seti</option>
+                                                </select>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="type">Property Type</label>
+                                                        <select name="type" id="type">
+                                                            <option <%= data.type === 'apartment'? 'selected' :''%> value="apartment">Apartment</option>
+                                                            <option <%= data.type === 'flat'? 'selected' :''%> value="flat">Flat</option>
+                                                            <option <%= data.type === 'house'? 'selected' :''%> value="house">House</option>
+                                                            <option <%= data.type === 'land'? 'selected' :''%> value="land">Land</option>
+                                                        </select>
+                                                    </div><!-- /.form-group -->
+                                                </div><!-- /.col-md-6 -->
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="status">Status</label>
+                                                        <select name="status" id="status">
+                                                            <option <%= data.status === 'sale'? 'selected' :'' %> value="sale">Sale</option>
+                                                            <option <%= data.status === 'rent'? 'selected' :'' %> value="rent">Rent</option>
+                                                        </select>
+                                                    </div><!-- /.form-group -->
+                                                </div><!-- /.col-md-6 -->
+                                            </div><!-- /.row -->
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="beds">Bedrooms</label>
+                                                        <input type="number" value="<%= data.beds %>" class="form-control" id="beds" name="beds" pattern="\d*" required>
+                                                    </div><!-- /.form-group -->
+                                                </div><!-- /.col-md-6 -->
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="baths">Bathrooms</label>
+                                                        <input type="number" value="<%= data.baths %>" class="form-control" id="baths" name="baths" pattern="\d*" required>
+                                                    </div><!-- /.form-group -->
+                                                </div><!-- /.col-md-6 -->
+                                            </div><!-- /.row -->
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="landSize">Land Size</label>
+                                                        <div class="input-group">
+                                                            <input type="number" value="<%= data.landSize %>" class="form-control" id="landSize" name="landSize" pattern="\d*" required>
+                                                            <span class="input-group-addon">m<sup>2</sup></span>
+                                                        </div>
+                                                    </div><!-- /.form-group -->
+                                                </div><!-- /.col-md-6 -->
+                                                <div class="col-md-6 col-sm-6">
+                                                  <div class="form-group">
+                                                      <label for="builtArea">Built Area</label>
+                                                      <div class="input-group">
+                                                          <input type="number" value="<%= data.builtArea %>" class="form-control" id="builtArea" name="builtArea" pattern="\d*" required>
+                                                          <span class="input-group-addon">m<sup>2</sup></span>
+                                                      </div>
+                                                  </div><!-- /.form-group -->
+                                                </div><!-- /.col-md-6 -->
+                                            </div><!-- /.row -->
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6">
+                                                  <div class="form-group">
+                                                      <label for="availability">Availability</label>
+                                                      <select name="availability" id="availability">
+                                                          <option <%= data.availability === 'immediate'? 'selected' :''%> value="immediate">Immediately</option>
+                                                          <option <%= data.availability === 'three_months'? 'selected' :''%> value="three_months">Within 3 Months</option>
+                                                          <option <%= data.availability === 'six_months'? 'selected' :''%> value="six_months">Within 6 Months</option>
+                                                          <option <%= data.availability === 'nine_months'? 'selected' :''%> value="nine_months">Within 9 Months</option>
+                                                          <option <%= data.availability === 'year_above'? 'selected' :''%> value="year_above">Year above</option>
+                                                      </select>
+                                                  </div><!-- /.form-group -->
+                                                </div><!-- /.col-md-6 -->
+                                                <div class="col-md-6 col-sm-6">
+                                                  <div class="form-group">
+                                                      <label for="condition">Condition</label>
+                                                      <select name="condition" id="condition">
+                                                          <option <%= data.condition === 'good'? 'selected' :''%> value="good">Good</option>
+                                                          <option <%= data.condition === 'fair'? 'selected' :''%> value="fair">Fair</option>
+                                                          <option <%= data.condition === 'excellent'? 'selected' :''%> value="excellent">Excellent</option>
+                                                      </select>
+                                                  </div><!-- /.form-group -->
+                                                </div><!-- /.col-md-6 -->
+                                            </div><!-- /.row -->
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6">
+                                                  <div class="form-group">
+                                                      <label for="mainRoadDistance">Distance from main road</label>
+                                                      <div class="input-group">
+                                                          <input type="number" value="<%= data.mainRoadDistance %>" class="form-control" id="mainRoadDistance" name="mainRoadDistance" pattern="\d*" required>
+                                                          <span class="input-group-addon">meter</span>
+                                                      </div>
+                                                  </div><!-- /.form-group -->
+                                                </div><!-- /.col-md-6 -->
+                                                <div class="col-md-6 col-sm-6">
+                                                  <div class="form-group">
+                                                      <label for="garage">Garage</label>
+                                                      <select name="garage" id="garage">
+                                                          <option <%= data.garage === 'yes'? 'selected' :''%> value="yes">Yes</option>
+                                                          <option <%= data.garage === 'no'? 'selected' :''%> value="no">No</option>
+                                                      </select>
+                                                  </div><!-- /.form-group -->
+                                                </div><!-- /.col-md-6 -->
+                                            </div><!-- /.row -->
+                                        </section><!-- /#summary -->
+                                    </div><!-- /.col-md-6 -->
+                                    <div class="col-md-6 col-sm-6">
+                                        <section id="place-on-map">
+                                            <header class="section-title">
+                                                <h2>Place on Map</h2>
+                                                <span class="link-arrow geo-location">Get My Position</span>
+                                            </header>
+                                            <div class="form-group">
+                                                <label for="address-map">Address</label>
+                                                <input type="text" class="form-control" id="address-map" name="address">
+                                            </div><!-- /.form-group -->
+                                            <label for="address-map">Or drag the marker to property position</label>
+                                            <div id="submit-map"></div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" id="latitude" name="latitude" readonly>
+                                                    </div><!-- /.form-group -->
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" id="longitude" name="longitude" readonly>
+                                                    </div><!-- /.form-group -->
+                                                </div>
+                                            </div>
+                                        </section><!-- /#place-on-map -->
+                                    </div><!-- /.col-md-6 -->
+                                </div><!-- /.block -->
+                            </div><!-- /.row -->
+                        </section>
+
+                        <section class="block" id="gallery">
+                            <header><h2>Gallery</h2></header>
+                            <div class="center">
+                                <div class="form-group">
+                                  <div id="photos-uploader" action="/property/uploadImages" class="dropzone"></div>
+                                  <input type="hidden" class="images-input" name="images" value="" />
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="property-features" class="block">
+                            <section>
+                                <header><h2>Property Features</h2></header>
+                                <input type="hidden" id="amenities" name="amenities" />
+                                <ul class="submit-features">
+                                    <li><div class="checkbox"><label><input <%= data.amenities.indexOf( "air_conditioning")> -1 ? 'checked' : '' %> class="amenity-check" value="air_conditioning" type="checkbox">Air conditioning</label></div></li>
+                                    <li><div class="checkbox"><label><input <%= data.amenities.indexOf( "water_supply")> -1 ? 'checked' : '' %> class="amenity-check" value="water_supply" type="checkbox">Water Supply</label></div></li>
+                                    <li><div class="checkbox"><label><input <%= data.amenities.indexOf( "heating")> -1 ? 'checked' : '' %> class="amenity-check" value="heating" type="checkbox">Heating</label></div></li>
+                                    <li><div class="checkbox"><label><input <%= data.amenities.indexOf( "internet")> -1 ? 'checked' : '' %> class="amenity-check" value="internet" type="checkbox">Internet</label></div></li>
+                                    <li><div class="checkbox"><label><input <%= data.amenities.indexOf( "electricity")> -1 ? 'checked' : '' %> class="amenity-check" value="electricity" type="checkbox">Electricity</label></div></li>
+                                    <li><div class="checkbox"><label><input <%= data.amenities.indexOf( "gym")> -1 ? 'checked' : '' %> class="amenity-check" value="gym" type="checkbox">Gym</label></div></li>
+                                    <li><div class="checkbox"><label><input <%= data.amenities.indexOf( "swimming_pool")> -1 ? 'checked' : '' %> class="amenity-check" value="swimming_pool" type="checkbox">Swimming Pool</label></div></li>
+                                    <li><div class="checkbox"><label><input <%= data.amenities.indexOf( "garbage_disposal")> -1 ? 'checked' : '' %> class="amenity-check" value="garbage_disposal" type="checkbox">Garbage Disposal</label></div></li>
+                                    <li><div class="checkbox"><label><input <%= data.amenities.indexOf( "telephone_line")> -1 ? 'checked' : '' %> class="amenity-check" value="telephone_line" type="checkbox">Telephone Line</label></div></li>
+                                    <li><div class="checkbox"><label><input <%= data.amenities.indexOf( "cable_tv")> -1 ? 'checked' : '' %> class="amenity-check" value="cable_tv" type="checkbox">Cable TV</label></div></li>
+                                    <li><div class="checkbox"><label><input <%= data.amenities.indexOf( "pets_room")> -1 ? 'checked' : '' %> class="amenity-check" value="pets_room" type="checkbox">Pets Room</label></div></li>
+                                    <li><div class="checkbox"><label><input <%= data.amenities.indexOf( "security")> -1 ? 'checked' : '' %> class="amenity-check" value="security" type="checkbox">Security</label></div></li>
+                                    <li><div class="checkbox"><label><input <%= data.amenities.indexOf( "terrace")> -1 ? 'checked' : '' %> class="amenity-check" value="terrace" type="checkbox">Terrace</label></div></li>
+                                    <li><div class="checkbox"><label><input <%= data.amenities.indexOf( "parking")> -1 ? 'checked' : '' %> class="amenity-check" value="parking" type="checkbox">Parking</label></div></li>
+                                    <li><div class="checkbox"><label><input <%= data.amenities.indexOf( "playground")> -1 ? 'checked' : '' %> class="amenity-check" value="playground" type="checkbox">Playground</label></div></li>
+                                    <li><div class="checkbox"><label><input <%= data.amenities.indexOf( "garden")> -1 ? 'checked' : '' %> class="amenity-check" value="garden" type="checkbox">Garden</label></div></li>
+                                    <li><div class="checkbox"><label><input <%= data.amenities.indexOf( "garage")> -1 ? 'checked' : '' %> class="amenity-check" value="garage" type="checkbox">Garage</label></div></li>
+                                </ul>
+                            </section>
+                        </section>
+                        <hr>
+                    </section>
+                </div><!-- /.col-md-12 -->
+            </div>
+        </div><!-- /.row -->
+        <div class="row">
+            <div class="block">
+                <div class="col-md-12 col-sm-12">
+                    <div class="center">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-default large submit-btn">Submit Property</button>
+                        </div><!-- /.form-group -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form><!-- /#form-submit -->
+</div><!-- /.container -->
+
+<script>
+$(document).ready(function () {
+  var a = '1';
+  const images = [];
+  let allowURLChange = false;
+
+  Dropzone.options.photosUploader = {
+    addRemoveLinks: true,
+    init: function () {
+
+      this.on("success", function (file, response) {
+        $('.dz-preview').each(function() {
+          if($(this).data('file').name === file.name) {
+            const newFile = Object.assign({}, file, { name: response.result })
+            $(this).data('file', newFile)
+          }
+        });
+      });
+
+      this.on("addedfile", function (file) {
+        $('.dz-preview:last-of-type').data('file', file);
+      });
+    }
+  }
+
+  $('.submit-btn').on('click', function(e) {
+    const amenities = [];
+    const currentQueue = [];
+
+    $.each($("input.amenity-check:checked"), function() {
+      amenities.push($(this).val());
+    });
+
+    $('input[name=amenities]').val(amenities.join(','));
+
+    $('.dz-preview').each( function(){
+      currentQueue.push($(this).data('file').name);
+    });
+
+    $('.images-input').val(currentQueue.join(','));
+
+    allowURLChange = true;
+
+    $('#addPropertyForm').submit();
+  });
+
+});
+</script>

@@ -45,6 +45,29 @@ router.get('/add', auth, function(req,res){
     res.render('property/add', data);
 });
 
+router.get('/myListings', auth, function(req,res){
+  Property
+    .find({
+      $and : [
+        { isActive : true },
+        { userId : req.session.userId }
+      ]
+    })
+    .sort('-dateAdded')
+    .exec(function (err, docs) {
+      console.log(docs);
+      if(err){
+        res.json({success : false, msg : 'Failed to list!'});
+      } else {
+        const data = Object.assign(dashboardLayoutData, {
+              title:  'Property - My listings',
+              property:docs
+            });
+          res.render('property/myListings', data);
+      }
+    });
+});
+
 router.get('/listings', auth, function(req,res){
   Property
     .find({
@@ -90,6 +113,23 @@ router.get('/view/:id', (req, res) => {
       });
     });
   });
+});
+
+router.get('/edit/:id', (req, res) => {
+  Property.findById(req.params.id)
+  .populate('userId')
+    .exec(function(err, doc) {
+      Users.findOne({ userId: doc.userId._id }).exec((err, agent) => {
+        const images = [doc.featuredImgUrl].concat(doc.images.filter(i => i.length));
+        const data = Object.assign(dashboardLayoutData, {
+                data: doc,
+                title: 'Property Edit',
+                images,
+                agent
+            });
+          res.render('property/edit', data);
+      });
+    });
 });
 
 router.post('/save', (req, res) => {

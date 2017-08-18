@@ -1,0 +1,41 @@
+<section id="my-properties">
+    <header><h1>My Properties</h1></header>
+    <div class="my-properties">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Property</th>
+                    <th></th>
+                    <th>Date Added</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% if(property) {%>
+                  <% property.forEach(function(d,a){ %>
+                <tr>
+                    <td class="image">
+                        <a href="#"><img alt="" src="/assets/img/uploads/<%= d.featuredImgUrl %>"></a>
+                    </td>
+                    <td><div class="inner">
+                        <a href="#"><h2><%= d.title %></h2></a>
+                        <figure><%= d.zone %>, <%= d.location %></figure>
+                        <div class="tag price">$ <%= d.price %></div>
+                    </div>
+                    </td>
+                    <td><%= d.dateAdded %></td>
+                    <td><%= d.status %></td>
+                    <td class="actions">
+                        <a href="/property/edit/<%= d._id %>" class="edit"><i class="fa fa-pencil"></i>Edit</a>
+                        <a href="#"><i class="delete fa fa-trash-o"></i></a>
+                    </td>
+                </tr>
+                <% }); %>
+                <% } %>
+                </tbody>
+            </table>
+        </div><!-- /.table-responsive -->
+    </div><!-- /.my-properties -->
+</section><!-- /#my-properties -->
