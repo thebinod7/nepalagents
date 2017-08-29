@@ -207,7 +207,7 @@ $(document).ready(function($) {
             bookmarkButton.removeClass('bookmark-added');
         }
     });
-	
+
     if ($('body').hasClass('navigation-fixed-bottom')){
         $('#page-content').css('padding-top',$('.navigation').height());
     }
@@ -253,15 +253,15 @@ $(document).ready(function($) {
 
 //  Magnific Popup
 
-    var imagePopup = $('.image-popup');
-    if (imagePopup.length > 0) {
-        imagePopup.magnificPopup({
-            type:'image',
-            removalDelay: 300,
-            mainClass: 'mfp-fade',
-            overflowY: 'scroll'
-        });
-    }
+    // var imagePopup = $('.image-popup');
+    // if (imagePopup.length > 0) {
+    //     imagePopup.magnificPopup({
+    //         type:'image',
+    //         removalDelay: 300,
+    //         mainClass: 'mfp-fade',
+    //         overflowY: 'scroll'
+    //     });
+    // }
 
 //  iCheck
 

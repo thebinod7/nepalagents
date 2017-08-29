@@ -15,7 +15,7 @@
                 <section id="property-detail">
                     <header class="property-title">
                         <h1><%= data.title %></h1>
-                        <figure><%= data.zone %>, <%= data.address? data.address : 'N/A'%></figure>
+                        <figure><%= data.location? data.location : 'N/A'%></figure>
                         <span class="actions">
                             <!--<a href="#" class="fa fa-print"></a>-->
                             <a href="#" class="bookmark" data-bookmark-state="empty"><span class="title-add">Add to bookmark</span><span class="title-added">Added</span></a>
@@ -38,10 +38,10 @@
                             <section id="quick-summary" class="clearfix">
                                 <header><h2>Quick Summary</h2></header>
                                 <dl>
-                                    <dt>Location</dt>
-                                        <dd><%= data.location? data.location : 'N/A'%></dd>
+                                    <dt>State</dt>
+                                        <dd><%= data.zone? data.zone : 'N/A'%></dd>
                                     <dt>Price</dt>
-                                        <dd><span class="tag price">$<%= data.price %></span></dd>
+                                        <dd><span class="tag price">Rs.<%= data.price %></span></dd>
                                     <dt>Property Type:</dt>
                                         <dd><%= data.type %></dd>
                                     <dt>Status:</dt>
@@ -77,10 +77,13 @@
                             </section><!-- /#property-features -->
                             <% } %>
                             <section id="property-map">
-                                <header><h2>Map</h2></header>
+                                <header><h2>Location</h2></header>
+                                <input type="hidden" id="lat" name="googleLat" value="<%= data.googleLat %>">
+                                <input type="hidden" id="lon" name="googleLon" value="<%= data.googleLong %>">
                                 <div class="property-detail-map-wrapper">
-                                    <div class="property-detail-map" id="property-detail-map"></div>
+                                    <div class="property-detail-map" id="googleMap"></div>
                                 </div>
+                                <span><%= data.location %></span>
                             </section><!-- /#property-map -->
                         </div><!-- /.col-md-8 -->
                         <div class="col-md-12 col-sm-12">
@@ -90,7 +93,7 @@
                                     <section class="agent-form">
                                         <div class="col-md-7 col-sm-12">
                                             <aside class="agent-info clearfix">
-                                                <figure><a href="#"><img alt="" src="/assets/img/uploads/<%= data.userId.profilePicUrl %>"></a></figure>
+                                                <figure><a href="#"><img alt="" src="<%= data.userId.profilePicUrl ? '/assets/img/uploads/'+ data.userId.profilePicUrl : '/assets/img/agent-01.jpg'%>"></a></figure>
                                                 <div class="agent-contact-info">
                                                     <h3><%= data.userId.firstName %> <%= data.userId.lastName %></h3>
                                                     <p>
@@ -195,7 +198,7 @@
                             <div class="info">
                                 <a href="/property/view/<%= d._id %>"><h4><%= d.title %></h4></a>
                                 <figure><%= d.zone %>, <%= d.location? d.location : 'N/A'%> </figure>
-                                <div class="tag price">$ <%= d.price %></div>
+                                <div class="tag price">Rs. <%= d.price %></div>
                             </div>
                         </div><!-- /.property -->
                         <% }); %>
@@ -208,3 +211,20 @@
     </div><!-- /.container -->
 </div>
 <!-- end Page Content -->
+<script>
+
+$(document).ready(function(){
+  var latitude = $('#lat').val();
+  var longitude = $('#lon').val();
+  console.log(latitude,longitude);
+  function myMap() {
+  var mapProp= {
+      center:new google.maps.LatLng(latitude,longitude),
+      zoom:20,
+  };
+  var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+  }
+  google.maps.event.addDomListener(window, 'load', myMap);
+});
+
+</script>
