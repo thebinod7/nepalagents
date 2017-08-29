@@ -10,9 +10,9 @@ google.maps.event.addDomListener(window, 'load', function () {
         console.log(latitude,longitude);
         var mapOptions = {
              center: new google.maps.LatLng(latitude, longitude),
-             zoom: 10,
+             zoom: 20,
              mapTypeId: google.maps.MapTypeId.MAP
          }
-       var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+       var map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
     });
 });

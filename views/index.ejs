@@ -8,8 +8,8 @@
                 <div class="overlay">
                     <div class="info">
                         <div class="tag price">$ <%= d.price %></div>
-                        <h3><%= d.title %></h3>
-                        <figure><%= d.zone %></figure>
+                        <h3><%= format.sentence(d.title) %></h3>
+                        <figure><%= format.name(d.zone) %>, <%= format.name(d.status) %></figure>
                     </div>
                     <hr>
                     <a href="/property/view/<%= d._id %>" class="link-arrow">Read More</a>
@@ -172,8 +172,8 @@
                             <div class="overlay">
                                 <div class="info">
                                     <div class="tag price">$ <%= d.price %></div>
-                                    <h3><%= d.title %></h3>
-                                    <figure><%= d.zone %></figure>
+                                    <h3><%= format.sentence(d.title) %></h3>
+                                    <figure><%= format.name(d.zone) %>, <%= format.name(d.status) %></figure>
                                 </div>
                                 <ul class="additional-info">
                                     <li>

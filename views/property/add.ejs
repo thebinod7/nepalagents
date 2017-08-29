@@ -166,7 +166,7 @@
                                     <div class="col-md-6 col-sm-6">
                                         <section id="place-on-map">
                                             <header class="section-title">
-                                                <h2>Place on Map</h2>
+                                                <h2>Show on Map</h2>
                                                 <span id="getLocation" class="link-arrow geo-location">Get My Position</span>
                                             </header>
                                             <div class="form-group">
@@ -176,7 +176,7 @@
                                             <!-- <label for="address-map">Or drag the marker to property position</label> -->
                                               <div class="row">
                                                 <div class="col-sm-12">
-                                                  <div id="map" style="width:100%;height:315px;margin-bottom:10px;">
+                                                  <div id="googleMap" style="width:100%;height:315px;margin-bottom:10px;"></div>
                                                 </div>
                                               </div>
                                             <div class="row">
@@ -275,10 +275,10 @@ function showPosition(position) {
     $('#location').val(data.results[0].formatted_address);
     var mapOptions = {
          center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
-         zoom: 30,
+         zoom: 20,
          mapTypeId: google.maps.MapTypeId.MAP
      }
-    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    var map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
   });
 }
 

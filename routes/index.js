@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Property = require('../models/property');
+const format = require('../utils/format');
 
 router.get('/', (req, res) => {
   Property
@@ -18,7 +19,8 @@ router.get('/', (req, res) => {
       } else {
         var data = {
           property: docs,
-          title : 'Home - Nepal Agents'
+          title : 'Home - Nepal Agents',
+          format
         };
         res.render('index',data);
       }

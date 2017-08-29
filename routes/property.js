@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken');
 const auth = require('../utils/authenticate').auth;
 const loggedIn = require('../utils/authenticate').loggedIn;
 const multer  = require('multer');
+const format = require('../utils/format');
 
 const dashboardLayoutData = {
   layout: 'layouts/dashboard'
@@ -108,7 +109,8 @@ router.get('/view/:id', (req, res) => {
           title: 'Property Details',
           list:related,
           images,
-          agent
+          agent,
+          format
         });
       });
     });

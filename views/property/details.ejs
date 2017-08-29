@@ -14,7 +14,7 @@
             <div class="col-md-9 col-sm-9">
                 <section id="property-detail">
                     <header class="property-title">
-                        <h1><%= data.title %></h1>
+                        <h1><%= format.sentence(data.title) %></h1>
                         <figure><%= data.location? data.location : 'N/A'%></figure>
                         <span class="actions">
                             <!--<a href="#" class="fa fa-print"></a>-->
@@ -39,13 +39,13 @@
                                 <header><h2>Quick Summary</h2></header>
                                 <dl>
                                     <dt>State</dt>
-                                        <dd><%= data.zone? data.zone : 'N/A'%></dd>
+                                        <dd><%= data.zone? format.name(data.zone) : 'N/A'%></dd>
                                     <dt>Price</dt>
                                         <dd><span class="tag price">Rs.<%= data.price %></span></dd>
                                     <dt>Property Type:</dt>
-                                        <dd><%= data.type %></dd>
+                                        <dd><%= format.name(data.type) %></dd>
                                     <dt>Status:</dt>
-                                        <dd><%= data.status %></dd>
+                                        <dd><%= format.name(data.status) %></dd>
                                     <dt>Land Size:</dt>
                                         <dd><%= data.landSize %> m<sup>2</sup></dd>
                                     <dt>Beds:</dt>
@@ -71,7 +71,7 @@
                                     <%
                                       data.amenities.forEach(function(item, a) {
                                     %>
-                                    <li><%= item %></li>
+                                    <li><%= format.name(item) %></li>
                                     <% }); %>
                                 </ul>
                             </section><!-- /#property-features -->
@@ -196,8 +196,8 @@
                                 </div>
                             </a>
                             <div class="info">
-                                <a href="/property/view/<%= d._id %>"><h4><%= d.title %></h4></a>
-                                <figure><%= d.zone %>, <%= d.location? d.location : 'N/A'%> </figure>
+                                <a href="/property/view/<%= d._id %>"><h4><%= format.sentence(d.title) %></h4></a>
+                                <figure><%= format.name(d.zone) %>, <%= format.name(d.status) %> </figure>
                                 <div class="tag price">Rs. <%= d.price %></div>
                             </div>
                         </div><!-- /.property -->
@@ -211,6 +211,7 @@
     </div><!-- /.container -->
 </div>
 <!-- end Page Content -->
+
 <script>
 
 $(document).ready(function(){
