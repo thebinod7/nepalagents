@@ -19,7 +19,7 @@ const property = require('./routes/property');
 
 const app = express();
 
-const port = 2000;
+const port=Number(process.env.PORT || 2000);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
