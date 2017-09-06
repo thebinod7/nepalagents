@@ -6,6 +6,10 @@
   "scripts": {
     "start": "node app.js"
   },
+  "engines": {
+    "node": "8.4.0",
+    "npm":"5.3.0"
+  },
   "dependencies": {
     "bcryptjs": "*",
     "body-parser": "*",
