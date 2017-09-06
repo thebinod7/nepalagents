@@ -29,19 +29,19 @@ app.set('view engine', 'ejs');
  app.set('layout', 'layouts/default');
  app.set('layout extractScripts', true);
 
- app.use(session({
-   secret: 'T$mp12345678',
-   resave: false,
-   saveUninitialized: true,
-   store: new RedisStore
- }));
-app.use(flash());
-
-app.use(function(req, res, next){
-  res.locals.user = req.session.user;
-  res.locals.loggedIn = req.session.loggedIn;
-  next();
-});
+//  app.use(session({
+//    secret: 'T$mp12345678',
+//    resave: false,
+//    saveUninitialized: true,
+//    store: new RedisStore
+//  }));
+// app.use(flash());
+//
+// app.use(function(req, res, next){
+//   res.locals.user = req.session.user;
+//   res.locals.loggedIn = req.session.loggedIn;
+//   next();
+// });
 
 //Body parser middleware
 // parse application/x-www-form-urlencoded
