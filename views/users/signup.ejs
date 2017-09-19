@@ -20,6 +20,15 @@
         <div class="row">
             <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
                 <form role="form" id="form-create-account" method="post" action="/users/signup">
+                  <div class="form-group">
+                    <label for="type">Role:</label>
+                    <select name="role" id="role" required="required">
+                        <option value="" disabled selected>Select your role</option>
+                        <option value="agent">Agent</option>
+                        <option value="buyer">Buyer</option>
+                        <option value="seller">Seller</option>
+                    </select>
+                  </div><!-- /.form-group -->
                     <div class="form-group">
                         <label for="firstName">First Name:</label>
                         <input type="text" class="form-control" id="firstName" name="firstName" required>

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Users= require('../models/users');
+const Membership= require('../models/membership');
 const nodemailer = require('nodemailer');
 const session = require('express-session');
 const jwt = require('jsonwebtoken');
@@ -98,6 +99,17 @@ router.post('/signup',function (req,res) {
                   req.flash('error', 'Server error! Please try again');
                   res.redirect('/users/signup');
                 } else {
+                    if(req.body.role === 'agent'){
+                      const memberPayload =  { userId : req.session.userId };
+                      const membership = new Membership(memberPayload);
+                      membership.save((err) => {
+                        if(err) {
+                          console.log(err);
+                        } else {
+                          console.log('Basic user added');
+                        }
+                      });
+                    }
                     sendEmail(doc.email,doc.firstName,doc._id,'signup');
                     req.flash('success', 'Congratulations, Your account has been created successfully.');
                     res.redirect('/users/login');
