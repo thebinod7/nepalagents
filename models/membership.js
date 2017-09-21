@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const objectId = mongoose.Schema.ObjectId;
 const membershipSchema = mongoose.Schema({
     membershiId : objectId,
-    userId : {type: objectId, ref:'Users'},
+    userId: {type: objectId, ref: 'Users'},
     memberType : {
         type : String,
         default : 'basic'
@@ -13,7 +13,8 @@ const membershipSchema = mongoose.Schema({
         default: 1
     },
     addedListings : {
-        type : Number
+        type : Number,
+        default : 0
     },
     desc : {
         type : String

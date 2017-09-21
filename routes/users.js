@@ -57,7 +57,7 @@ var sendEmail = function (dest,name,uniqueId,purpose) {
     };
 
     // send mail with defined transport object
-    transporter.sendMail(mailOptions,function () {
+    transporter.sendMail(mailOptions,function (eror) {
         if (error) {
             return console.log(error);
         }
@@ -100,7 +100,7 @@ router.post('/signup',function (req,res) {
                   res.redirect('/users/signup');
                 } else {
                     if(req.body.role === 'agent'){
-                      const memberPayload =  { userId : req.session.userId };
+                      const memberPayload =  { userId : doc._id };
                       const membership = new Membership(memberPayload);
                       membership.save((err) => {
                         if(err) {

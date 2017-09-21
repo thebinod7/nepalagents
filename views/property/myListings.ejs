@@ -1,5 +1,11 @@
 <section id="my-properties">
     <header><h1>My Properties</h1></header>
+    <% if(messages.error) { %>
+        <div class="alert alert-danger" style="<%= messages.error ? 'margin-top:20px;' : 'display: none' %>"><strong><%= messages.error ? messages.error[0] : '' %></strong></div>
+    <% } %>
+    <% if(messages.success) { %>
+          <div class="alert alert-success" style="<%= messages.success ? 'margin-top:20px;' : 'display: none' %>"><strong><%= messages.success ? messages.success[0] : '' %></strong></div>
+    <% } %>
     <div class="my-properties">
         <div class="table-responsive">
             <table class="table">
@@ -29,7 +35,7 @@
                     <td><%= d.status %></td>
                     <td class="actions">
                         <a href="/property/edit/<%= d._id %>" class="edit"><i class="fa fa-pencil"></i>Edit</a>
-                        <a href="#"><i class="delete fa fa-trash-o"></i></a>
+                        <a href="#"><button data-contentid="<%= d._id %>" class="btn delete-listing"><i class="delete fa fa-trash-o"></i></button></a>
                     </td>
                 </tr>
                 <% }); %>
@@ -39,3 +45,28 @@
         </div><!-- /.table-responsive -->
     </div><!-- /.my-properties -->
 </section><!-- /#my-properties -->
+
+<script>
+  $(document).ready(function() {
+    $('.delete-listing').click(function(){
+      var contentId = $(this).data('contentid');
+      console.log(contentId);
+      var txt;
+          var r = confirm("Confirm delete operation?");
+          if (r == true) {
+            $.ajax({
+              url: '/property/delete/' + contentId,
+              type: 'DELETE',
+              success: function(result) {
+                window.location.replace("/property/myListings");
+              },
+              error : function(err) {
+                window.location.replace("/property/myListings");
+              }
+          });
+        } else {
+              return false;
+        }
+    });
+});
+</script>

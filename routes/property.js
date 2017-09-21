@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Users= require('../models/users');
+const Membership= require('../models/membership');
 const Property= require('../models/property');
 const nodemailer = require('nodemailer');
 const session = require('express-session');
@@ -135,27 +136,46 @@ router.get('/edit/:id', (req, res) => {
 });
 
 router.post('/save', (req, res) => {
-  const images = req.body.images.split(',');
-  const amenities = req.body.amenities.split(',');
-
-  const featuredImgUrl = images[0];
-  images.splice(0, 1);
-
-  const payload = Object.assign({}, req.body, {
-    featuredImgUrl,
-    images,
-    amenities,
-    userId : req.session.userId,
-  });
-  const property = new Property(payload);
-  property.save((err) => {
-    if(err) {
-      console.log(err);
-      req.flash('error', 'ERROR! Failed to add property listing');
+  Membership
+  .findOne({ userId : req.session.userId })
+  .populate('userId')
+  .exec(function(err,member){
+    if(err) throw err
+    if(member.memberType === 'basic' && member.addedListings >= member.allowedListings ) {
+        req.flash('error', 'Please upgrade your membership plan to add more listings!');
+        res.redirect('/property/add');
+    } else if(member.memberType === 'silver' && member.addedListings >= member.allowedListings) {
+      req.flash('error', 'Please upgrade your membership plan to add more listings!');
+      res.redirect('/property/add');
+    } else if(member.memberType === 'gold' && member.addedListings >= member.allowedListings){
+      req.flash('error', 'Please upgrade your membership plan to add more listings!');
       res.redirect('/property/add');
     } else {
-      req.flash('success', 'SUCCESS! Property listing added successfully!');
-      res.redirect('/property/add');
+      const images = req.body.images.split(',');
+      const amenities = req.body.amenities.split(',');
+
+      const featuredImgUrl = images[0];
+      images.splice(0, 1);
+
+      const payload = Object.assign({}, req.body, {
+        featuredImgUrl,
+        images,
+        amenities,
+        userId : req.session.userId,
+      });
+      const property = new Property(payload);
+      property.save((err) => {
+        if(err) {
+          console.log(err);
+          req.flash('error', 'ERROR! Failed to add property listing');
+          res.redirect('/property/add');
+        } else {
+          console.log(member.addedListings + 1);
+          Membership.update({userId : req.session.userId }, {$set: { addedListings: member.addedListings + 1 }});
+          req.flash('success', 'SUCCESS! Property listing added successfully!');
+          res.redirect('/property/add');
+        }
+      });
     }
   });
 });
@@ -173,13 +193,16 @@ router.get('/list', (req, res) => {
 });
 
 router.delete('/delete/:id',function (req,res) {
-  Property.remove({ _id: req.params.id }, function(err,docs) {
-    if (err) throw err;
-
-    res.json({success : true, msg :'Success', result : docs});
-    // req.flash('success', 'SUCCESS! Property deleted successfully!');
-    // res.redirect('/estate/my-listings');
-  });
+  console.log(req.params.id);
+    Property.findById(req.params.id, function(err, doc) {
+        if (err) throw err;
+        doc.remove(function(err) {
+            if (err) throw err;
+             req.flash('success', 'SUCCESS! Property deleted successfully!');
+             res.redirect('/property/myListings');
+            // res.json({success:true,msg:'Post deleted successfully'});
+        });
+    });
 });
 
 module.exports = router;
