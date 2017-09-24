@@ -141,6 +141,7 @@ router.post('/save', (req, res) => {
   .populate('userId')
   .exec(function(err,member){
     if(err) throw err
+    console.log(member.addedListings);
     if(member.memberType === 'basic' && member.addedListings >= member.allowedListings ) {
         req.flash('error', 'Please upgrade your membership plan to add more listings!');
         res.redirect('/property/add');
@@ -172,6 +173,9 @@ router.post('/save', (req, res) => {
         } else {
           console.log(member.addedListings + 1);
           Membership.update({userId : req.session.userId }, {$set: { addedListings: member.addedListings + 1 }});
+          Membership.findOneAndUpdate({ userId : req.session.userId }, {$set: { addedListings: member.addedListings + 1 }}, { new: true }, function(err, doc){
+            console.log(doc);
+          });
           req.flash('success', 'SUCCESS! Property listing added successfully!');
           res.redirect('/property/add');
         }
