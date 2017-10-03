@@ -7,6 +7,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const flash = require('express-flash');
+const moment = require('moment');
 var RedisStore = require('connect-redis')(session);
 
 mongoose.Promise = global.Promise;
@@ -36,6 +37,10 @@ app.set('view engine', 'ejs');
    store: new RedisStore
  }));
 app.use(flash());
+
+var shortDateFormat = "LL";
+app.locals.moment = moment;
+app.locals.shortDateFormat = shortDateFormat;
 
 app.use(function(req, res, next){
   res.locals.user = req.session.user;

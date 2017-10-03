@@ -27,12 +27,12 @@
                     </td>
                     <td><div class="inner">
                         <a href="#"><h2><%= d.title %></h2></a>
-                        <figure><%= d.zone %></figure>
+                        <figure><%= format.name(d.zone) %></figure>
                         <div class="tag price">$ <%= d.price %></div>
                     </div>
                     </td>
-                    <td><%= d.dateAdded %></td>
-                    <td><%= d.status %></td>
+                    <td><%= moment(d.dateAdded).format(shortDateFormat) %></td>
+                    <td><%= format.name(d.status) %></td>
                     <td class="actions">
                         <a href="/property/edit/<%= d._id %>" class="edit"><i class="fa fa-pencil"></i>Edit</a>
                         <a href="#"><button data-contentid="<%= d._id %>" class="btn delete-listing"><i class="delete fa fa-trash-o"></i></button></a>

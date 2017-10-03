@@ -202,6 +202,7 @@
                                 <div class="form-group">
                                   <div id="photos-uploader" action="/property/uploadImages" class="dropzone"></div>
                                   <input type="hidden" class="images-input" name="images" value="" />
+                                  <input type="hidden" class="images-input" name="images" value="<%= data.images %>" />
                                 </div>
                             </div>
                         </section>
@@ -288,26 +289,8 @@ function showPosition(position) {
 
   var a = '1';
   const images = [];
+//  const images = $('.images-input').val().split(',');
   let allowURLChange = false;
-
-  Dropzone.options.photosUploader = {
-    addRemoveLinks: true,
-    init: function () {
-
-      this.on("success", function (file, response) {
-        $('.dz-preview').each(function() {
-          if($(this).data('file').name === file.name) {
-            const newFile = Object.assign({}, file, { name: response.result })
-            $(this).data('file', newFile)
-          }
-        });
-      });
-
-      this.on("addedfile", function (file) {
-        $('.dz-preview:last-of-type').data('file', file);
-      });
-    }
-  }
 
   $('.submit-btn').on('click', function(e) {
     const amenities = [];

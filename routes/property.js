@@ -63,7 +63,8 @@ router.get('/myListings', auth, function(req,res){
       } else {
         const data = Object.assign(dashboardLayoutData, {
               title:  'Property - My listings',
-              property:docs
+              property:docs,
+              format
             });
           res.render('property/myListings', data);
       }
