@@ -15,6 +15,10 @@ const dashboardLayoutData = {
   layout: 'layouts/dashboard'
 };
 
+const listingLayoutData = {
+  layout: 'layouts/listing'
+};
+
 const relatedListings = function(status) {
   return Property.find({
     status
@@ -71,7 +75,7 @@ router.get('/myListings', auth, function(req,res){
     });
 });
 
-router.get('/listings', auth, function(req,res){
+router.get('/listings', function(req,res){
   Property
     .find({
       $and : [
@@ -84,12 +88,13 @@ router.get('/listings', auth, function(req,res){
       if(err){
         res.json({success : false, msg : 'Failed to list!'});
       } else {
-        var data = {
-          property: docs,
-          count : docs.length,
-          title : 'Property - listings'
-        };
-        res.render('property/listings',data);
+        const data = Object.assign(listingLayoutData, {
+              title:  'Property - My listings',
+              property:docs,
+              format,
+              count : docs.length
+            });
+          res.render('property/listings', data);
       }
     });
 });
