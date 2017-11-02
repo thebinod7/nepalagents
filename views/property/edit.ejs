@@ -293,6 +293,8 @@ function showPosition(position) {
   let allowURLChange = false;
 
   $('.submit-btn').on('click', function(e) {
+    console.log('aaaaaaaaaa');
+    return;
     const amenities = [];
     const currentQueue = [];
 
@@ -310,7 +312,7 @@ function showPosition(position) {
 
     allowURLChange = true;
 
-    $('#addPropertyForm').submit();
+    $('#updatePropertyForm').submit();
   });
 
 });

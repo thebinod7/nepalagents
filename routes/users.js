@@ -8,6 +8,8 @@ const jwt = require('jsonwebtoken');
 const auth = require('../utils/authenticate').auth;
 const loggedIn = require('../utils/authenticate').loggedIn;
 const multer  = require('multer');
+const Property= require('../models/property');
+const format = require('../utils/format');
 
 var storage = multer.diskStorage({
   destination: './public/assets/img/uploads/',
@@ -154,11 +156,23 @@ router.get('/signup',function(req,res){
   res.render('users/signup', data);
 });
 
-router.get('/settings',function(req,res){
+router.get('/settings', auth,function(req,res){
   const data = Object.assign(dashboardLayoutData, {
         title:  'Users - Settings'
       });
     res.render('users/settings', data);
+});
+
+router.get('/favorite',auth,function(req,res){
+    Property.find({ favoritedBy: req.session.userId }).exec((err, docs) => {
+    const data = {
+      layout: 'layouts/dashboard',
+      title:  'Favorite Properties',
+      docs,
+      format
+    };
+    res.render('users/favoriteProperty', data);
+  });
 });
 
 router.post('/change/password',(req,res) => {

@@ -99,10 +99,55 @@ router.get('/listings', function(req,res){
     });
 });
 
+router.get('/add-to-favorites/:id', (req, res) => {
+  console.log('===================');
+  Property.findOne({ _id: req.params.id }).exec((err, doc) => {
+    const index = doc.favoritedBy.indexOf(req.session.userId);
+    console.log('index', index);
+    if( index > -1) {
+      doc.favoritedBy.splice(index, 1);
+    } else {
+      doc.favoritedBy.push(req.session.userId);
+    }
+    doc.save((err) => {
+      if(!err) {
+        res.redirect(req.query.redirect_url || 'back');
+      } else {
+        res.json({
+          success: false,
+          err
+        });
+      }
+    });
+  });
+});
+
+router.get('/remove-from-favorites/:id', auth, (req, res) => {
+  console.log("DELETE");
+  Property.findOne({ _id: req.params.id }).exec((err, doc) => {
+    const index = doc.favoritedBy.indexOf(req.session.userId);
+    if( index > -1) {
+      // doc.archivedBy.push(req.session.userId);
+      doc.favoritedBy.splice(index, 1);
+    }
+    doc.save((err) => {
+      if(!err) {
+        res.redirect('back');
+      } else {
+        res.json({
+          success: false,
+          err
+        });
+      }
+    });
+  });
+});
+
 router.get('/view/:id', (req, res) => {
   Property.findById(req.params.id)
   .populate('userId')
   .exec((err, doc) => {
+    // console.log(doc.favoritedBy);
     if(err) throw err;
     relatedListings(doc.status)
     .limit(4)

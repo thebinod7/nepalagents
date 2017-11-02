@@ -1,0 +1,40 @@
+<section id="bookmarked-properties">
+    <header><h1>Favorite Properties</h1></header>
+    <div class="grid">
+    <% docs.forEach(function(d,a){ %>
+    <div class="property masonry">
+        <div class="inner">
+            <a href="/property/view/<%= d._id %>">
+                <div class="property-image">
+                    <div class="overlay">
+                        <div class="info">
+                            <div class="tag price">Rs. <%= d.price %></div>
+                        </div>
+                    </div>
+                    <img alt="" src="/assets/img/uploads/<%= d.featuredImgUrl %>">
+                </div>
+            </a>
+            <aside>
+                <header>
+                    <a href="/property/view/<%= d._id %>"><h3><%= d.title %></h3></a>
+                    <figure><%= d.location %></figure>
+                </header>
+                <p><%= d.description %></p>
+                <dl>
+                    <dt>Status:</dt>
+                    <dd><%= format.name(d.status) %></dd>
+                    <dt>Area:</dt>
+                    <dd><%= d.landSize %> m<sup>2</sup></dd>
+                    <dt>Beds:</dt>
+                    <dd><%= d.beds %></dd>
+                    <dt>Baths:</dt>
+                    <dd><%= d.baths %></dd>
+                </dl>
+                <a style="color:red;" href="/property/remove-from-favorites/<%= d._id %>"><i class="fa fa-minus-circle"></i> Remove</a>
+            </aside>
+        </div>
+    </div><!-- /.property -->
+    <% }); %>
+    </div><!-- /js-masonry-->
+
+</section><!-- /#my-properties -->

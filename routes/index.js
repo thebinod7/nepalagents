@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
       ]
     })
     .sort('-dateAdded')
-    .limit(8)
+    .limit(4)
     .exec(function (err, docs) {
       if(err){
         res.json({success : false, msg : 'Failed to list!'});

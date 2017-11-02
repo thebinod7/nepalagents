@@ -18,7 +18,15 @@
                         <figure><%= data.location? data.location : 'N/A'%></figure>
                         <span class="actions">
                             <!--<a href="#" class="fa fa-print"></a>-->
-                            <a href="#" class="bookmark" data-bookmark-state="empty"><span class="title-add">Add to bookmark</span><span class="title-added">Added</span></a>
+                            <% if(locals.user && locals.user._id) { %>
+                            <% if(data.favoritedBy.indexOf(locals.user._id) === -1) { %>
+                            <a href="/property/add-to-favorites/<%= data._id %>" class="bookmark" data-bookmark-state="empty"><span class="title-add">Add to Favorite</span><span class="title-added">Added</span></a>
+                            <% } else { %>
+                                <a type="button" href="#" class="btn--default"><i class="fa fa-check"></i>Added to Favorite</a>
+                            <% } %>
+                            <% } else { %>
+                                <a href="/users/login" class="bookmark" data-bookmark-state="empty"><span class="title-add">Add to Favorite</span><span class="title-added">Added</span></a>
+                            <% } %>
                         </span>
                     </header>
                     <section id="property-gallery">
@@ -190,7 +198,7 @@
                         <header><h3>Similar Properties</h3></header>
                         <% list.forEach(function(d,i){ %>
                         <div class="property small">
-                            <a href="property-detail.html">
+                            <a href="/property/view/<%= d._id %>">
                                 <div class="property-image">
                                     <img alt="" src="/assets/img/uploads/<%= d.featuredImgUrl %>">
                                 </div>
